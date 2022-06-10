@@ -2,14 +2,17 @@ import jwt from "jsonwebtoken";
 
 class Authentication {
   static signToken(username: string): string | undefined {
-    return jwt.sign({ username }, process.env.PRIVATEKEY || "PRIVATEKEY");
+    return jwt.sign({ username,active:true }, process.env.PRIVATEKEY || "PRIVATEKEY");
   }
 
-  static decodeToken(token: string|undefined): boolean {
+  static decodeToken(token: string | undefined): boolean {
     try {
-
-      const tokenBearer=token?.split(" ")[1]
-      var decoded = jwt.verify(tokenBearer||"token", process.env.PRIVATEKEY || "PRIVATEKEY");
+      const tokenBearer = token?.split(" ")[1];
+      var decoded = jwt.verify(
+        tokenBearer || "token",
+        process.env.PRIVATEKEY || "PRIVATEKEY"
+      );
+      
       return true;
     } catch (err) {
       return false;

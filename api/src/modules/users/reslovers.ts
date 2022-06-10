@@ -1,11 +1,24 @@
 import Authentication from "../../utils/authentication";
 import HashPass from "../../utils/hasPassword";
 import User from "./model";
+//get all
+export async function index(parentValue: any, agrs: any, req:boolean) {
+ 
+
+  const result = await User.findAll({
+    
+  });
+  if (!result) {
+    throw new Error("Not found user!");
+  } else {
+    return result;
+  }
+}
 
 //get by id
 export async function show(parentValue: any, agrs: any, req:boolean) {
  
-  console.log(req)
+
   const result = await User.findOne({
     where: { id: agrs.id },
   });

@@ -1,0 +1,140 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+    background-color: rgb(18, 18, 18);
+    position: relative;
+    height: 100%;
+}
+
+p,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255, 255, 255) !important;
+}
+
+html,
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: rgb(238, 143, 143);
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 300px !important;
+    width: 250px !important;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s;
+}
+
+.swiper-slide:hover img:hover {
+    display: block;
+    width: 130%;
+    height: 130%;
+    object-fit: cover;
+    transition: all 0.5s;
+}
+
+.swiper-slide-edit {
+    text-align: center;
+    font-size: 18px;
+    background: rgb(238, 143, 143);
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 300px !important;
+    width: 250px !important;
+    margin: 0 auto;
+}
+
+.swiper-slide-edit img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ant-modal-body,
+.ant-modal-footer {
+    border: none;
+    background-color: rgb(49, 49, 49) !important;
+}
+
+.ant-input::selection,
+.ant-input-lg::selection,
+.search::selection {
+    color: black !important;
+}
+
+.titleCategory {
+    display: inline;
+    border-bottom: 3px solid red;
+}
+
+.swiper-pagination-bullet {
+    background-color: white !important;
+}
+
+.ant-input-affix-wrapper svg {
+    color: darkgrey !important;
+}
+
+.hidescreen {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.678);
+}
+
+.login {
+    background-color: rgb(31, 31, 31);
+    padding: 20px;
+    width: 400px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.back {
+    position: absolute;
+    left: 0px;
+    top: 2px;
+}

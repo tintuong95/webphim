@@ -1,4 +1,4 @@
-import { GraphQLString } from "graphql";
+import { GraphQLString,GraphQLObjectType } from "graphql";
 import { create, login, logoutUser } from "./reslovers";
 import TypeUser from "./type";
 

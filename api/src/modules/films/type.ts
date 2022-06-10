@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLInt, GraphQLString } from 'graphql';
+import { GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean } from 'graphql';
 import TypeAuthor from '../author/type';
 import TypeCategory from '../category/type';
 
@@ -11,7 +11,12 @@ const TypeFilm:GraphQLObjectType =new GraphQLObjectType({
         category:{type:TypeCategory},
         description:{type:GraphQLString},
         publicYear:{type:GraphQLInt},
-        author:{type:TypeAuthor}
+        author:{type:TypeAuthor},
+        img:{type:GraphQLString},
+        link:{type:GraphQLString},
+        categoryId:{type:GraphQLInt},
+        authorId:{type:GraphQLInt},
+        
     })
 })
 

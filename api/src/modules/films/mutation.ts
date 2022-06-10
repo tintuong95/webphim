@@ -11,7 +11,9 @@ export const filmCreate={
         categoryId:{type:GraphQLInt},
         description:{type:GraphQLString},
         publicYear:{type:GraphQLInt},
-        authorId:{type:GraphQLInt}
+        authorId:{type:GraphQLInt},
+        link:{type:GraphQLString},
+        img:{type:GraphQLString}
     },
     resolve:Create
 }
@@ -25,7 +27,9 @@ export const filmUpdate={
         categoryId:{type:GraphQLInt},
         description:{type:GraphQLString},
         publicYear:{type:GraphQLInt},
-        authorId:{type:GraphQLInt}
+        authorId:{type:GraphQLInt},
+        link:{type:GraphQLString},
+        img:{type:GraphQLString}
     },
     resolve:Update
 

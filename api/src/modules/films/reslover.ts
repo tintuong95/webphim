@@ -1,15 +1,52 @@
 import Author from "../author/model";
 import Category from "../category/model";
 import Film from "./model";
+import { Op } from "sequelize";
+import { iteratorSymbol } from "immer/dist/internal";
+type TypeArgs = {
+  categoryId: number;
+  offset?: number;
+  search?: string;
+};
 
-export async function GetAll(parent: any, args: any, context: any) {
+export async function GetAllLimit(parent: any, args: TypeArgs, context: any) {
+  try {
+    const idCategory =
+      args.categoryId != 0 ? { categoryId: args.categoryId } : {};
+    const search = args.search
+      ? { name: { [Op.like]: `%${args.search}%` } }
+      : {};
+
+    const result = await Film.findAll({
+      where: {
+        ...idCategory,
+        ...search,
+      },
+      include: [
+        { model: Author, as: "author" },
+        { model: Category, as: "category" },
+      ],
+      limit: 12,
+      offset: args.offset || 0,
+      order: [["id", "DESC"]],
+    });
+
+    return result;
+  } catch (e) {
+    return e;
+  }
+}
+
+export async function GetAll(parent: any, args: TypeArgs, context: any) {
   try {
     const result = await Film.findAll({
-        include:[
-            {model:Author,through: { attributes: [] }},
-            {model:Category,through: { attributes: [] }}
-        ]
+      include: [
+        { model: Author, as: "author" },
+        { model: Category, as: "category" },
+      ],
+      order: [["id", "DESC"]],
     });
+
     return result;
   } catch (e) {
     return e;
@@ -18,14 +55,18 @@ export async function GetAll(parent: any, args: any, context: any) {
 
 export async function Get(parent: any, args: any, context: any) {
   try {
+    
+    // if (!context.auth) {
+    //   return false;
+    // }
     const result = await Film.findOne({
       where: {
         id: args.id,
       },
-      include:[
-        {model:Author,as:"author"},
-        {model:Category,as:"category"}
-    ]
+      include: [
+        { model: Author, as: "author" },
+        { model: Category, as: "category" },
+      ],
     });
     return result;
   } catch (e) {

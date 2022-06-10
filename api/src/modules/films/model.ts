@@ -14,6 +14,8 @@ class Film extends Model<InferAttributes<Film>, InferCreationAttributes<Film>> {
   declare description: string;
   declare publicYear: number;
   declare authorId: number;
+  declare img: string;
+  declare link: string;
 }
 
 
@@ -43,6 +45,14 @@ Film.init(
     },
     authorId: {
       type: DataTypes.INTEGER.UNSIGNED,
+    //   allowNull: false,
+    },
+    img: {
+      type: DataTypes.STRING,
+    //   allowNull: false,
+    },
+    link: {
+      type: DataTypes.STRING,
     //   allowNull: false,
     },
   },
