@@ -18,6 +18,7 @@ export const authorSlice =createSlice({
         builder.addCase(actionAuthorGets.fulfilled,(state,{type,payload,meta})=>{
             state.authors=payload.authorGets
         })
+        
     }
 })
 

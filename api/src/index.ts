@@ -59,9 +59,7 @@ class App {
         schema,
         graphiql: true,
         context: {
-          auth: Authentication.decodeToken(
-            request.headers.authorization || "token"
-          ),
+          auth:request.headers.authorization
         },
       }))
     );

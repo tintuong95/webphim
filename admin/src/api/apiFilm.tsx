@@ -17,12 +17,13 @@ const FILM_ALL = `{
 const FILM_ID = (id: number) => `query {
   filmGet(id:${id}){
     id
-        name
-        categoryId
-       authorId
-        publicYear
-        description
-  link
+    name
+    categoryId
+    authorId
+    publicYear
+    description
+    link
+    img
  }
    
  }`;
@@ -81,6 +82,7 @@ export const fetchFilmId = async (id:number) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
       query: FILM_ID(id),
@@ -95,6 +97,7 @@ export const fetchFilmRemoveId = async (id: number) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
       query: FILM_REMOVE_ID(id),
@@ -117,6 +120,7 @@ export const fetchFilmCreate = async (
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
       query: FILM_CREATE(
@@ -148,6 +152,7 @@ export const fetchFilmUpdate = async (
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
       query: FILM_UPDATE(

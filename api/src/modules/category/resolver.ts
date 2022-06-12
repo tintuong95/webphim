@@ -1,3 +1,4 @@
+import Authentication from "../../utils/authentication";
 import Film from "../films/model";
 import Category from "./model";
 
@@ -37,6 +38,11 @@ async function gets(parent: any, args: any, context: any) {
 
 //create category
 async function create(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+ 
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Category.create({
       ...args,
@@ -53,6 +59,10 @@ async function create(parent: any, args: any, context: any) {
 
 //update category
 async function update(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Category.findOne({
       where: { id: args.id },
@@ -73,6 +83,10 @@ async function update(parent: any, args: any, context: any) {
 
 //delete
 async function remove(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Category.findOne({
       where: { id: args.id },

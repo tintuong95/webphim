@@ -1,3 +1,4 @@
+import Authentication from "../../utils/authentication";
 import Film from "../films/model";
 import Author from "./model";
 
@@ -37,6 +38,10 @@ async function gets(parent: any, args: any, context: any) {
 //create author
 
 async function create(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Author.create({
       ...args,
@@ -53,6 +58,10 @@ async function create(parent: any, args: any, context: any) {
 
 //update author
 async function update(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Author.findOne({
       where: { id: args.id },
@@ -73,6 +82,10 @@ async function update(parent: any, args: any, context: any) {
 }
 
 async function remove(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Author.findOne({
       where: { id: args.id },

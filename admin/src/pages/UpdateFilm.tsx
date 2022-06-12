@@ -53,7 +53,7 @@ export default function UpdateFilm(): ReactElement {
       setInputForm({ ...response.data.filmGet });
     });
   }, []);
-
+  console.log(inputForm)
   return (
     <Form
   

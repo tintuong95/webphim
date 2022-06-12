@@ -1,5 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { notification } from 'antd';
 import * as film from "../../api/apiFilm";
+
+export const openNotification = () => {
+  notification.info({
+    message: "Thành công ",
+  });
+};
 
 export const actionFilmAll = createAsyncThunk(
   "film/getall",
@@ -14,6 +21,7 @@ export const actionFilmRemoveId = createAsyncThunk(
   async (payload: any, thunkAPI) => {
     const response = await film.fetchFilmRemoveId(Number(payload.id));
     payload.dispatch(actionFilmAll());
+    
     return response.data;
   }
 );
@@ -32,6 +40,7 @@ export const actionFilmCreate = createAsyncThunk(
       link,
       img
     );
+    
     return response.data;
   }
 );
@@ -67,6 +76,7 @@ export const actionFilmUpdate = createAsyncThunk(
       link,
       img
     );
+    
     return response.data
   }
 );

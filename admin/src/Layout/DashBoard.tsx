@@ -4,6 +4,7 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  VideoCameraOutlined,ProfileOutlined
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu } from "antd";
@@ -30,10 +31,10 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem("MOVIE.VN", "0"),
-  getItem("Film", "1", <PieChartOutlined />),
-  getItem("Author", "2", <DesktopOutlined />),
+  getItem("Film", "1", <DesktopOutlined />),
+  getItem("Author", "2",  <VideoCameraOutlined />),
   getItem("User", "3", <UserOutlined />),
-  getItem("Catetory", "4", <TeamOutlined />),
+  getItem("Catetory", "4",<ProfileOutlined />),
   getItem("Support", "5", <TeamOutlined />),
 ];
 
@@ -48,7 +49,7 @@ function handleLink(key:number):void{
 
 
 export function DashBoard(props: any): ReactElement {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const { Component, ...children } = props;
 
   return (

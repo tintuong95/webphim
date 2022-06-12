@@ -3,6 +3,7 @@ import Category from "../category/model";
 import Film from "./model";
 import { Op } from "sequelize";
 import { iteratorSymbol } from "immer/dist/internal";
+import Authentication from "../../utils/authentication";
 type TypeArgs = {
   categoryId: number;
   offset?: number;
@@ -55,10 +56,13 @@ export async function GetAll(parent: any, args: TypeArgs, context: any) {
 
 export async function Get(parent: any, args: any, context: any) {
   try {
+    const authorizttion=Authentication.decodeToken(context.auth,["user","admin"])
+    console.log(authorizttion)
+    if(!authorizttion){
+      return false;
+    }
     
-    // if (!context.auth) {
-    //   return false;
-    // }
+  
     const result = await Film.findOne({
       where: {
         id: args.id,
@@ -75,6 +79,10 @@ export async function Get(parent: any, args: any, context: any) {
 }
 
 export async function Create(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Film.create({
       ...args,
@@ -86,6 +94,10 @@ export async function Create(parent: any, args: any, context: any) {
 }
 
 export async function Update(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Film.findOne({
       where: { id: args.id },
@@ -105,6 +117,10 @@ export async function Update(parent: any, args: any, context: any) {
 }
 
 export async function Remove(parent: any, args: any, context: any) {
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
   try {
     const result = await Film.findOne({ where: { id: args.id } });
     if (result) {

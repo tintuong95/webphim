@@ -41,7 +41,7 @@ export async function create(parentValue: any, agrs: any) {
   if (!result) {
     throw new Error("Not create user!");
   } else {
-    return Authentication.signToken(result.username);
+    return Authentication.signToken(result.username,"user");
   }
 }
 
@@ -60,11 +60,40 @@ export async function login(parentValue: any, agrs: any) {
   if (!compare) {
     throw new Error("Incorrect password!");
   }
-  return Authentication.signToken(result.username);
+  return Authentication.signToken(result.username,"user");
 }
 
 //logout
 export async function logoutUser(parentValue: any, agrs: any) {
   Authentication.logoutToken();
   return "Logout success!";
+}
+
+
+//remove by id
+export async function remove(parentValue: any, agrs: any, context:any) {
+ 
+  const authorizttion=Authentication.decodeToken(context.auth,["admin"])
+  if(!authorizttion){
+    return false;
+  }
+  const result = await User.findOne({
+    where: { id: agrs.id },
+  });
+  if (!result) {
+    throw new Error("Not found user!");
+  } else {
+    result.destroy()
+    return "Success remove";
+  }
+}
+
+
+//login admin 
+
+export  function loginAd (parentValue:any,args:any,context:any):string|undefined|boolean{
+  if(args.username==="admin123" && args.password==="admin123"){
+    return Authentication.signToken(args.username,"admin")
+  }
+  return false;
 }
