@@ -1,4 +1,5 @@
-const endpoint = "http://localhost:5000/graphql";
+const endpoint:string = process.env.REACT_APP_ENDPOINT||"http://localhost:5000/graphql";
+
 
 const FILM_ALL = (idCategory: number, offset?: number, search?: string) => {
   const nameSearch = search ? `,search:"${search}"` : "";
@@ -46,7 +47,7 @@ export const fetchFilmGetAll = async (
   offset?: number,
   search?: string
 ) => {
-  console.log(idCategory,offset)
+ 
   const response = await fetch(endpoint, {
     method: "POST",
 

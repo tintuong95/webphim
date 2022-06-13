@@ -1,4 +1,4 @@
-const endpoint = "http://localhost:5000/graphql";
+const endpoint:string = process.env.REACT_APP_ENDPOINT||"http://localhost:5000/graphql";
 
 const LOGIN = (usename: string, password: string) => `
 {
